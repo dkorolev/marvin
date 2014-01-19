@@ -11,11 +11,11 @@ Marvin is a stub for real-time clients that:
 
 Marvin is written in C++ and uses Thrift as an external interface.
 
-The original design is to use ```tail -f``` or ```fetch --last_ms_and_follow``` from ```npm install overlog``` as the input and ```npm install ariadne``` as the frontend.
+The original design is to pipe in the output of ```tail -f``` or ```fetch --last_ms_and_follow``` from ```npm install overlog``` as the input and use ```npm install ariadne``` as the frontend.
 
 ## Motivation
 
-![Screenshat](https://raw2.github.com/dkorolev/marvin/master/static/marvin.png)
+![marvin](https://raw2.github.com/dkorolev/marvin/master/static/marvin.png)
 
 User engagement. Don't talk to me about user engagement.
 
