@@ -43,7 +43,12 @@ using namespace ::apache::thrift::transport;
 using namespace ::apache::thrift::server;
 
 template<typename TImpl, typename TProcessor> struct runMain {
-  struct impl_with_healthz : TImpl { int32_t healthz() { return 1; } };
+  struct impl_with_healthz : TImpl {
+    int32_t healthz() {
+      felicity::watchdog_reset();
+      return 1;
+    }
+  };
   static void run() {
     felicity::watchdog_reset();
     boost::shared_ptr<impl_with_healthz> handler(new impl_with_healthz());
