@@ -42,15 +42,22 @@ using namespace ::apache::thrift::protocol;
 using namespace ::apache::thrift::transport;
 using namespace ::apache::thrift::server;
 
+template<typename TImpl, typename TProcessor> struct runMain {
+  struct impl_with_healthz : TImpl { int32_t healthz() { return 1; } };
+  static void run() {
+    felicity::watchdog_reset();
+    boost::shared_ptr<impl_with_healthz> handler(new impl_with_healthz());
+    boost::shared_ptr<TProcessor> processor(new TProcessor(handler));
+    boost::shared_ptr<TServerTransport> serverTransport(new TServerSocket(FLAGS_port));
+    boost::shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
+    boost::shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
+    felicity::safe_cout << "READY\n";
+    TSimpleServer(processor, serverTransport, transportFactory, protocolFactory).serve();
+  }
+};
+
 template<typename TImpl, typename TProcessor> void marvin_main() {
-  felicity::watchdog_reset();
-  boost::shared_ptr<TImpl> handler(new TImpl());
-  boost::shared_ptr<TProcessor> processor(new TProcessor(handler));
-  boost::shared_ptr<TServerTransport> serverTransport(new TServerSocket(FLAGS_port));
-  boost::shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
-  boost::shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
-  felicity::safe_cout << "READY\n";
-  TSimpleServer(processor, serverTransport, transportFactory, protocolFactory).serve();
+  runMain<TImpl, TProcessor>::run();
 }
 
 #endif
