@@ -37,6 +37,8 @@
 
 #include <deque>
 
+namespace marvin {
+
 const uint64_t ONE_MINUTE_IN_MS = 1000 * 60;
 const uint64_t ONE_HOUR_IN_MS = ONE_MINUTE_IN_MS * 60;
 const uint64_t ONE_DAY_IN_MS = ONE_HOUR_IN_MS * 24;
@@ -150,12 +152,12 @@ template<typename T> class dummy_stats {
 };
 
 // Class sliding_windows keeps track of multiple sliding windows of different widths at once.
-template<typename T> struct sliding_windows {
+template<typename T_STATS, typename T_TIMESTAMP = uint64_t> struct sliding_windows {
   size_t total = 0;
-#define TIME_WINDOW_WIDTH(name,ms) sliding_window_stats<T, typename T::element_type, ms> counters_##name;
+#define TIME_WINDOW_WIDTH(name,ms) sliding_window_stats<T_STATS, T_TIMESTAMP, ms> counters_##name;
 #include "time_window_widths.h"
 #undef TIME_WINDOW_WIDTH
-  void add(const typename T::element_type& e) {
+  void add(const typename T_STATS::element_type& e) {
     ++total;
 #define TIME_WINDOW_WIDTH(name,ms) counters_##name.add(e);
 #include "time_window_widths.h"
@@ -211,5 +213,7 @@ struct should_compile_sliding_window_usage {
     test_by_type<sliding_window_stats<dummy_stats<double>, uint64_t, ONE_WEEK_IN_MS>>();
   }
 };
+
+}  // namespace marvin
 
 #endif

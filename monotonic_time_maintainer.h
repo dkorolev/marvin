@@ -50,10 +50,10 @@ class monotonic_time_maintainer {
   }
 
   struct rolling_stats {
-    sliding_windows<dummy_stats<uint64_t> > seen;
-    sliding_windows<dummy_stats<uint64_t> > passed;
-    sliding_windows<dummy_stats<uint64_t> > adjusted;
-    sliding_windows<dummy_stats<uint64_t> > dropped;
+    sliding_windows<dummy_stats<uint64_t>> seen;
+    sliding_windows<dummy_stats<uint64_t>> passed;
+    sliding_windows<dummy_stats<uint64_t>> adjusted;
+    sliding_windows<dummy_stats<uint64_t>> dropped;
     template<typename T> void export_monotonicity_log(T& output, uint64_t passed_in_now = 0) {
       const uint64_t now = passed_in_now ? passed_in_now : felicity::date_now();
       seen.export_counters(output.seen, now);
