@@ -1,8 +1,6 @@
-// Example usage:
+// Exports marvin::main() to run the Thrift server.  Example usage:
 
 /*
-#include <gflags/gflags.h>
-
 #include "../marvin/main.h"
 
 #include "gen-cpp/API.h"
@@ -21,7 +19,7 @@ int main(int argc, char** argv) {
   if (!google::ParseCommandLineFlags(&argc, &argv, true)) {
     return -1; 
   }
-  marvin_main<APIImpl, API::APIProcessor>();
+  marvin::main<APIImpl, API::APIProcessor>();
 }
 */
 
@@ -35,7 +33,9 @@ int main(int argc, char** argv) {
 
 #include "../felicity/with_gflags/watchdog.h"
 
-DEFINE_int32(port, 9090, "Port to use."); 
+DEFINE_int32(port, 9090, "Port to use.");
+
+namespace marvin {
 
 using namespace ::apache::thrift;
 using namespace ::apache::thrift::protocol;
@@ -61,8 +61,10 @@ template<typename TImpl, typename TProcessor> struct runMain {
   }
 };
 
-template<typename TImpl, typename TProcessor> void marvin_main() {
+template<typename TImpl, typename TProcessor> void main() {
   runMain<TImpl, TProcessor>::run();
 }
+
+}  // namespace marvin
 
 #endif
