@@ -122,8 +122,11 @@ public:
       virgin_ = false;
     }
     if (timestamp < most_recent_timestamp_) {
-      felicity::safe_cout << "Time went back.\n";
-      felicity::safe_cerr << "Time went back.\n";
+      std::ostringstream os;
+      os << "Time went back, from " << most_recent_timestamp_ << " to " << timestamp << ".\n";
+      const std::string s = os.str();
+      felicity::safe_cout << s;
+      felicity::safe_cerr << s;
       exit(1);
     }
     most_recent_timestamp_ = timestamp;
