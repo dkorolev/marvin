@@ -160,23 +160,52 @@ template<typename T_STATS, typename T_TIMESTAMP = uint64_t> struct sliding_windo
 #define TIME_WINDOW_WIDTH(name,ms) sliding_window_stats<T_STATS, T_TIMESTAMP, ms> counters_##name;
 #include "time_window_widths.h"
 #undef TIME_WINDOW_WIDTH
-  void add(const typename T_STATS::element_type& e) {
-    ++total;
-#define TIME_WINDOW_WIDTH(name,ms) counters_##name.add(e);
+
+  template<typename F> void for_each(F f) {
+#define TIME_WINDOW_WIDTH(name,ms) f(counters_##name);
 #include "time_window_widths.h"
 #undef TIME_WINDOW_WIDTH
   }
 
-  template<typename T_COUNTERS> void export_counters(T_COUNTERS& output, uint64_t timestamp = 0) {
-    if (timestamp) {
-#define TIME_WINDOW_WIDTH(name,ms) counters_##name.relax(timestamp);
+  template<typename F, typename X> void for_each(F f, X& x) {
+#define TIME_WINDOW_WIDTH(name,ms) f(counters_##name, x._##name);
 #include "time_window_widths.h"
 #undef TIME_WINDOW_WIDTH
+  }
+
+  struct add_impl {
+    const typename T_STATS::element_type& e_;
+    add_impl(const typename T_STATS::element_type& e) : e_(e) {}
+    template<typename T> inline void operator()(T& c) { c.add(e_); }
+  };
+
+  void add(const typename T_STATS::element_type& e) {
+    ++total;
+    for_each(add_impl(e));
+  }
+
+  struct relax_impl {
+    const T_TIMESTAMP timestamp_;
+    relax_impl(const T_TIMESTAMP timestamp) : timestamp_(timestamp) {}
+    template<typename T> inline void operator()(T& c) { c.relax(timestamp_); }
+  };
+
+  void relax(T_TIMESTAMP timestamp) {
+    for_each(relax_impl(timestamp));
+  }
+
+  struct export_counters_impl {
+    template<typename T, typename X> inline void operator()(T& c, X& r) {
+      r = c.size();
     }
-    output.total = total;
-#define TIME_WINDOW_WIDTH(name,ms) output.total_##name = counters_##name.size();
-#include "time_window_widths.h"
-#undef TIME_WINDOW_WIDTH
+  };
+
+  template<typename T_COUNTERS> void export_counters(T_COUNTERS& output, T_TIMESTAMP timestamp = 0) {
+    if (timestamp) {
+      relax(timestamp);
+    }
+    output._ = total;
+    for_each(export_counters_impl(), output);
   }
 };
 
