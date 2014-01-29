@@ -37,6 +37,7 @@ class monotonic_time_maintainer {
     }
     stats_.seen.add(wall_time);
     if (ms >= last_ms_) {
+      last_ms_ = ms;
       stats_.passed.add(wall_time);
       return true;
     } else if (ms >= last_ms_ - max_skew_) {
