@@ -120,14 +120,15 @@ public:
   void relax(timestamp_type timestamp) {
     if (virgin_) {
       virgin_ = false;
-    }
-    if (timestamp < most_recent_timestamp_) {
-      std::ostringstream os;
-      os << "Time went back, from " << most_recent_timestamp_ << " to " << timestamp << ".\n";
-      const std::string s = os.str();
-      felicity::safe_cout << s;
-      felicity::safe_cerr << s;
-      exit(1);
+    } else {
+      if (timestamp < most_recent_timestamp_) {
+        std::ostringstream os;
+        os << "Time went back, from " << most_recent_timestamp_ << " to " << timestamp << ".\n";
+        const std::string s = os.str();
+        felicity::safe_cout << s;
+        felicity::safe_cerr << s;
+        exit(1);
+      }
     }
     most_recent_timestamp_ = timestamp;
     while (!entries_.empty() && (most_recent_timestamp_ - T_TIMESTAMP_WRAPPER::template timestamp_of<element_type, timestamp_type>(entries_.front()) > window_width_)) {
