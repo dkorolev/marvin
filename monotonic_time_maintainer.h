@@ -31,6 +31,7 @@ class monotonic_time_maintainer {
   template<typename T> bool use(T& entry) {
     const uint64_t wall_time = felicity::date_now();
     const uint64_t ms = entry.ms;
+    assert(ms > 0);
     if (virgin_) {
       virgin_ = false;
       last_ms_ = ms;
@@ -48,6 +49,10 @@ class monotonic_time_maintainer {
       stats_.dropped.add(wall_time);
       return false;
     }
+  }
+
+  uint64_t last_ms() const {
+    return last_ms_;
   }
 
   struct rolling_stats {
@@ -72,7 +77,7 @@ class monotonic_time_maintainer {
   rolling_stats stats_;
   const uint64_t max_skew_;
   bool virgin_ = true;
-  uint64_t last_ms_;
+  uint64_t last_ms_ = 0;
 };
 
 }  // namespace marvin
