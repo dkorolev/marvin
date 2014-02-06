@@ -168,7 +168,19 @@ template<typename T_STATS, typename T_TIMESTAMP = uint64_t> struct sliding_windo
 #undef TIME_WINDOW_WIDTH
   }
 
+  template<typename F> void for_each(F f) const {
+#define TIME_WINDOW_WIDTH(name,ms) f(counters_##name);
+#include "time_window_widths.h"
+#undef TIME_WINDOW_WIDTH
+  }
+
   template<typename F, typename X> void for_each(F f, X& x) {
+#define TIME_WINDOW_WIDTH(name,ms) f(counters_##name, x._##name);
+#include "time_window_widths.h"
+#undef TIME_WINDOW_WIDTH
+  }
+
+  template<typename F, typename X> void for_each(F f, X& x) const {
 #define TIME_WINDOW_WIDTH(name,ms) f(counters_##name, x._##name);
 #include "time_window_widths.h"
 #undef TIME_WINDOW_WIDTH
@@ -196,11 +208,15 @@ template<typename T_STATS, typename T_TIMESTAMP = uint64_t> struct sliding_windo
   }
 
   struct export_counters_impl {
-    template<typename T, typename X> inline void operator()(T& c, X& r) {
+    template<typename T, typename X> inline void operator()(const T& c, X& r) {
       r = c.size();
     }
   };
 
+  template<typename T_COUNTERS> void export_counters(T_COUNTERS& output) const {
+    output._ = total;
+    for_each(export_counters_impl(), output);
+  }
   template<typename T_COUNTERS> void export_counters(T_COUNTERS& output, T_TIMESTAMP timestamp = 0) {
     if (timestamp) {
       relax(timestamp);
