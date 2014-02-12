@@ -49,6 +49,11 @@ template<typename TImpl, typename TProcessor> struct runMain {
       return 1;
     }
   };
+  struct ReadyPrinter : TServerEventHandler {
+    virtual void preServe() {
+      felicity::safe_cout << "READY\n";
+    }
+  };
   static void run() {
     felicity::watchdog_reset();
     boost::shared_ptr<impl_with_healthz> handler(new impl_with_healthz());
@@ -56,8 +61,10 @@ template<typename TImpl, typename TProcessor> struct runMain {
     boost::shared_ptr<TServerTransport> serverTransport(new TServerSocket(FLAGS_port));
     boost::shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
     boost::shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
-    felicity::safe_cout << "READY\n";
-    TSimpleServer(processor, serverTransport, transportFactory, protocolFactory).serve();
+    TSimpleServer server(processor, serverTransport, transportFactory, protocolFactory);
+    boost::shared_ptr<TServerEventHandler> readyPrinter(new ReadyPrinter());
+    server.setServerEventHandler(readyPrinter);
+    server.serve();
   }
 };
 
