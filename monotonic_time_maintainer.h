@@ -14,7 +14,7 @@
 
 #include "sliding_window_stats.h"
 
-#include "../felicity/all_with_gflags.h"
+#include "../felicity/all.h"
 
 DEFINE_int64(acceptable_time_skew_ms, 50, "Time going back for more than this is not acceptable. The rest is pushed forward.");
 
