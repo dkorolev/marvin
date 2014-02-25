@@ -226,6 +226,36 @@ template<typename T_STATS, typename T_TIMESTAMP = uint64_t> struct sliding_windo
   }
 };
 
+template<typename T1, typename T2> void extract_first_n(T1& output, const T2& input, size_t size = 100) {
+  if (input.size() <= size) {
+    std::copy(input.begin(), input.end(), back_inserter(output));
+  } else {
+    size_t count = 0;
+    for (auto cit = input.begin(); count < size; ++cit, ++count) {
+      output.push_back(*cit);
+    }
+  }
+}
+
+template<typename T1, typename T2> void reverse_extract_last_n(T1& output, const T2& input, size_t size = 100) {
+  if (input.size() <= size) {
+    std::copy(input.rbegin(), input.rend(), back_inserter(output));
+  } else {
+    size_t count = 0;
+    for (auto cit = input.rbegin(); count < size; ++cit, ++count) {
+      output.push_back(*cit);
+    }
+  }
+}
+
+template<typename T1, typename T2> void copy_most_recent(T1& output, const T2& input, size_t size = 100) {
+  if (input.size() <= size) {
+    std::copy(input.begin(), input.end(), back_inserter(output));
+  } else {
+    std::copy(input.begin(), input.begin() + size, back_inserter(output));
+  }
+}
+
 template<typename T> void reverse(T& x) {
   std::reverse(x.begin(), x.end());
 }
