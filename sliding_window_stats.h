@@ -226,6 +226,18 @@ template<typename T_STATS, typename T_TIMESTAMP = uint64_t> struct sliding_windo
   }
 };
 
+template<typename T> void reverse(T& x) {
+  std::reverse(x.begin(), x.end());
+}
+
+template<typename T1, typename T2> void reverse_copy_most_recent(T1& output, const T2& input, size_t size = 100) {
+  if (input.size() <= size) {
+    std::copy(input.rbegin(), input.rend(), back_inserter(output));
+  } else {
+    std::copy(input.rbegin(), input.rbegin() + size, back_inserter(output));
+  }
+}
+
 // Poor man's test.
 // So far only tests that the code compiles.
 // TODO(dkorolev): Add a proper test.
