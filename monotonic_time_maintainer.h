@@ -1,6 +1,5 @@
 // TODO(dkorolev): Use the generic 'ms' field extractor.
 // TODO(dkorolev): Also blend felicity::date_now() into this logic. They belong together.
-// TODO(dkorolev): And add a default implemention w/o template parameters.
 
 // Implements a helper class that ensures the input stream of log messages is increasing in time.
 // The entries that go back in time by less than --acceptable_time_skew_ms[=50ms by default] are forced to last seen timestamp.
