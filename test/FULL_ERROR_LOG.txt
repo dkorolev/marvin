@@ -1,0 +1,249 @@
+# g++ -DBOOST_NO_RVALUE_REFERENCES   -std=c++11 -o binary test.cc gen-cpp/*.o -lthrift -lssl -lpthread -lgflags
+
+In file included from /usr/local/include/thrift/protocol/TBinaryProtocol.h:23:0,
+                 from ../main.h:29,
+                 from test.cc:1:
+/usr/local/include/thrift/protocol/TProtocol.h: In member function ‘boost::shared_ptr<apache::thrift::transport::TTransport> apache::thrift::protocol::TProtocol::getTransport()’:
+/usr/local/include/thrift/protocol/TProtocol.h:651:12: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TTransport>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransport>&)’
+In file included from /usr/include/boost/shared_ptr.hpp:17:0,
+                 from /usr/local/include/thrift/transport/TTransport.h:24,
+                 from /usr/local/include/thrift/protocol/TProtocol.h:23,
+                 from /usr/local/include/thrift/protocol/TBinaryProtocol.h:23,
+                 from ../main.h:29,
+                 from test.cc:1:
+/usr/include/boost/smart_ptr/shared_ptr.hpp:168:25: note: ‘boost::shared_ptr<apache::thrift::transport::TTransport>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransport>&)’ is implicitly declared as deleted because ‘boost::shared_ptr<apache::thrift::transport::TTransport>’ declares a move constructor or move assignment operator
+In file included from /usr/local/include/thrift/protocol/TBinaryProtocol.h:23:0,
+                 from ../main.h:29,
+                 from test.cc:1:
+/usr/local/include/thrift/protocol/TProtocol.h: In member function ‘boost::shared_ptr<apache::thrift::transport::TTransport> apache::thrift::protocol::TProtocol::getInputTransport()’:
+/usr/local/include/thrift/protocol/TProtocol.h:657:12: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TTransport>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransport>&)’
+/usr/local/include/thrift/protocol/TProtocol.h: In member function ‘boost::shared_ptr<apache::thrift::transport::TTransport> apache::thrift::protocol::TProtocol::getOutputTransport()’:
+/usr/local/include/thrift/protocol/TProtocol.h:660:12: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TTransport>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransport>&)’
+/usr/local/include/thrift/protocol/TProtocol.h: In constructor ‘apache::thrift::protocol::TProtocol::TProtocol(boost::shared_ptr<apache::thrift::transport::TTransport>)’:
+/usr/local/include/thrift/protocol/TProtocol.h:665:19: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TTransport>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransport>&)’
+In file included from /usr/local/include/thrift/protocol/TBinaryProtocol.h:24:0,
+                 from ../main.h:29,
+                 from test.cc:1:
+/usr/local/include/thrift/protocol/TVirtualProtocol.h: In constructor ‘apache::thrift::protocol::TProtocolDefaults::TProtocolDefaults(boost::shared_ptr<apache::thrift::transport::TTransport>)’:
+/usr/local/include/thrift/protocol/TVirtualProtocol.h:314:23: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TTransport>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransport>&)’
+In file included from /usr/local/include/thrift/protocol/TBinaryProtocol.h:23:0,
+                 from ../main.h:29,
+                 from test.cc:1:
+/usr/local/include/thrift/protocol/TProtocol.h:664:3: error:   initializing argument 1 of ‘apache::thrift::protocol::TProtocol::TProtocol(boost::shared_ptr<apache::thrift::transport::TTransport>)’
+In file included from /usr/local/include/thrift/server/TServer.h:23:0,
+                 from /usr/local/include/thrift/server/TSimpleServer.h:23,
+                 from ../main.h:30,
+                 from test.cc:1:
+/usr/local/include/thrift/TProcessor.h: In member function ‘bool apache::thrift::TProcessor::process(boost::shared_ptr<apache::thrift::protocol::TProtocol>, void*)’:
+/usr/local/include/thrift/TProcessor.h:147:45: error: use of deleted function ‘boost::shared_ptr<apache::thrift::protocol::TProtocol>::shared_ptr(const boost::shared_ptr<apache::thrift::protocol::TProtocol>&)’
+In file included from /usr/include/boost/shared_ptr.hpp:17:0,
+                 from /usr/local/include/thrift/transport/TTransport.h:24,
+                 from /usr/local/include/thrift/protocol/TProtocol.h:23,
+                 from /usr/local/include/thrift/protocol/TBinaryProtocol.h:23,
+                 from ../main.h:29,
+                 from test.cc:1:
+/usr/include/boost/smart_ptr/shared_ptr.hpp:168:25: note: ‘boost::shared_ptr<apache::thrift::protocol::TProtocol>::shared_ptr(const boost::shared_ptr<apache::thrift::protocol::TProtocol>&)’ is implicitly declared as deleted because ‘boost::shared_ptr<apache::thrift::protocol::TProtocol>’ declares a move constructor or move assignment operator
+In file included from /usr/local/include/thrift/server/TServer.h:23:0,
+                 from /usr/local/include/thrift/server/TSimpleServer.h:23,
+                 from ../main.h:30,
+                 from test.cc:1:
+/usr/local/include/thrift/TProcessor.h:141:16: error:   initializing argument 1 of ‘virtual bool apache::thrift::TProcessor::process(boost::shared_ptr<apache::thrift::protocol::TProtocol>, boost::shared_ptr<apache::thrift::protocol::TProtocol>, void*)’
+/usr/local/include/thrift/TProcessor.h:147:45: error: use of deleted function ‘boost::shared_ptr<apache::thrift::protocol::TProtocol>::shared_ptr(const boost::shared_ptr<apache::thrift::protocol::TProtocol>&)’
+/usr/local/include/thrift/TProcessor.h:141:16: error:   initializing argument 2 of ‘virtual bool apache::thrift::TProcessor::process(boost::shared_ptr<apache::thrift::protocol::TProtocol>, boost::shared_ptr<apache::thrift::protocol::TProtocol>, void*)’
+/usr/local/include/thrift/TProcessor.h: In member function ‘boost::shared_ptr<apache::thrift::TProcessorEventHandler> apache::thrift::TProcessor::getEventHandler()’:
+/usr/local/include/thrift/TProcessor.h:151:12: error: use of deleted function ‘boost::shared_ptr<apache::thrift::TProcessorEventHandler>::shared_ptr(const boost::shared_ptr<apache::thrift::TProcessorEventHandler>&)’
+In file included from /usr/include/boost/shared_ptr.hpp:17:0,
+                 from /usr/local/include/thrift/transport/TTransport.h:24,
+                 from /usr/local/include/thrift/protocol/TProtocol.h:23,
+                 from /usr/local/include/thrift/protocol/TBinaryProtocol.h:23,
+                 from ../main.h:29,
+                 from test.cc:1:
+/usr/include/boost/smart_ptr/shared_ptr.hpp:168:25: note: ‘boost::shared_ptr<apache::thrift::TProcessorEventHandler>::shared_ptr(const boost::shared_ptr<apache::thrift::TProcessorEventHandler>&)’ is implicitly declared as deleted because ‘boost::shared_ptr<apache::thrift::TProcessorEventHandler>’ declares a move constructor or move assignment operator
+In file included from /usr/local/include/thrift/server/TServer.h:23:0,
+                 from /usr/local/include/thrift/server/TSimpleServer.h:23,
+                 from ../main.h:30,
+                 from test.cc:1:
+/usr/local/include/thrift/TProcessor.h: In constructor ‘apache::thrift::TSingletonProcessorFactory::TSingletonProcessorFactory(boost::shared_ptr<apache::thrift::TProcessor>)’:
+/usr/local/include/thrift/TProcessor.h:221:27: error: use of deleted function ‘boost::shared_ptr<apache::thrift::TProcessor>::shared_ptr(const boost::shared_ptr<apache::thrift::TProcessor>&)’
+In file included from /usr/include/boost/shared_ptr.hpp:17:0,
+                 from /usr/local/include/thrift/transport/TTransport.h:24,
+                 from /usr/local/include/thrift/protocol/TProtocol.h:23,
+                 from /usr/local/include/thrift/protocol/TBinaryProtocol.h:23,
+                 from ../main.h:29,
+                 from test.cc:1:
+/usr/include/boost/smart_ptr/shared_ptr.hpp:168:25: note: ‘boost::shared_ptr<apache::thrift::TProcessor>::shared_ptr(const boost::shared_ptr<apache::thrift::TProcessor>&)’ is implicitly declared as deleted because ‘boost::shared_ptr<apache::thrift::TProcessor>’ declares a move constructor or move assignment operator
+In file included from /usr/local/include/thrift/server/TServer.h:23:0,
+                 from /usr/local/include/thrift/server/TSimpleServer.h:23,
+                 from ../main.h:30,
+                 from test.cc:1:
+/usr/local/include/thrift/TProcessor.h: In member function ‘virtual boost::shared_ptr<apache::thrift::TProcessor> apache::thrift::TSingletonProcessorFactory::getProcessor(const apache::thrift::TConnectionInfo&)’:
+/usr/local/include/thrift/TProcessor.h:224:12: error: use of deleted function ‘boost::shared_ptr<apache::thrift::TProcessor>::shared_ptr(const boost::shared_ptr<apache::thrift::TProcessor>&)’
+In file included from /usr/local/include/thrift/server/TServer.h:26:0,
+                 from /usr/local/include/thrift/server/TSimpleServer.h:23,
+                 from ../main.h:30,
+                 from test.cc:1:
+/usr/local/include/thrift/concurrency/Thread.h: In member function ‘virtual boost::shared_ptr<apache::thrift::concurrency::Runnable> apache::thrift::concurrency::Thread::runnable() const’:
+/usr/local/include/thrift/concurrency/Thread.h:123:65: error: use of deleted function ‘boost::shared_ptr<apache::thrift::concurrency::Runnable>::shared_ptr(const boost::shared_ptr<apache::thrift::concurrency::Runnable>&)’
+In file included from /usr/include/boost/shared_ptr.hpp:17:0,
+                 from /usr/local/include/thrift/transport/TTransport.h:24,
+                 from /usr/local/include/thrift/protocol/TProtocol.h:23,
+                 from /usr/local/include/thrift/protocol/TBinaryProtocol.h:23,
+                 from ../main.h:29,
+                 from test.cc:1:
+/usr/include/boost/smart_ptr/shared_ptr.hpp:168:25: note: ‘boost::shared_ptr<apache::thrift::concurrency::Runnable>::shared_ptr(const boost::shared_ptr<apache::thrift::concurrency::Runnable>&)’ is implicitly declared as deleted because ‘boost::shared_ptr<apache::thrift::concurrency::Runnable>’ declares a move constructor or move assignment operator
+In file included from /usr/local/include/thrift/server/TSimpleServer.h:23:0,
+                 from ../main.h:30,
+                 from test.cc:1:
+/usr/local/include/thrift/server/TServer.h: In member function ‘boost::shared_ptr<apache::thrift::TProcessorFactory> apache::thrift::server::TServer::getProcessorFactory()’:
+/usr/local/include/thrift/server/TServer.h:116:12: error: use of deleted function ‘boost::shared_ptr<apache::thrift::TProcessorFactory>::shared_ptr(const boost::shared_ptr<apache::thrift::TProcessorFactory>&)’
+In file included from /usr/include/boost/shared_ptr.hpp:17:0,
+                 from /usr/local/include/thrift/transport/TTransport.h:24,
+                 from /usr/local/include/thrift/protocol/TProtocol.h:23,
+                 from /usr/local/include/thrift/protocol/TBinaryProtocol.h:23,
+                 from ../main.h:29,
+                 from test.cc:1:
+/usr/include/boost/smart_ptr/shared_ptr.hpp:168:25: note: ‘boost::shared_ptr<apache::thrift::TProcessorFactory>::shared_ptr(const boost::shared_ptr<apache::thrift::TProcessorFactory>&)’ is implicitly declared as deleted because ‘boost::shared_ptr<apache::thrift::TProcessorFactory>’ declares a move constructor or move assignment operator
+In file included from /usr/local/include/thrift/server/TSimpleServer.h:23:0,
+                 from ../main.h:30,
+                 from test.cc:1:
+/usr/local/include/thrift/server/TServer.h: In member function ‘boost::shared_ptr<apache::thrift::transport::TServerTransport> apache::thrift::server::TServer::getServerTransport()’:
+/usr/local/include/thrift/server/TServer.h:120:12: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TServerTransport>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TServerTransport>&)’
+In file included from /usr/include/boost/shared_ptr.hpp:17:0,
+                 from /usr/local/include/thrift/transport/TTransport.h:24,
+                 from /usr/local/include/thrift/protocol/TProtocol.h:23,
+                 from /usr/local/include/thrift/protocol/TBinaryProtocol.h:23,
+                 from ../main.h:29,
+                 from test.cc:1:
+/usr/include/boost/smart_ptr/shared_ptr.hpp:168:25: note: ‘boost::shared_ptr<apache::thrift::transport::TServerTransport>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TServerTransport>&)’ is implicitly declared as deleted because ‘boost::shared_ptr<apache::thrift::transport::TServerTransport>’ declares a move constructor or move assignment operator
+In file included from /usr/local/include/thrift/server/TSimpleServer.h:23:0,
+                 from ../main.h:30,
+                 from test.cc:1:
+/usr/local/include/thrift/server/TServer.h: In member function ‘boost::shared_ptr<apache::thrift::transport::TTransportFactory> apache::thrift::server::TServer::getInputTransportFactory()’:
+/usr/local/include/thrift/server/TServer.h:124:12: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TTransportFactory>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransportFactory>&)’
+In file included from /usr/include/boost/shared_ptr.hpp:17:0,
+                 from /usr/local/include/thrift/transport/TTransport.h:24,
+                 from /usr/local/include/thrift/protocol/TProtocol.h:23,
+                 from /usr/local/include/thrift/protocol/TBinaryProtocol.h:23,
+                 from ../main.h:29,
+                 from test.cc:1:
+/usr/include/boost/smart_ptr/shared_ptr.hpp:168:25: note: ‘boost::shared_ptr<apache::thrift::transport::TTransportFactory>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransportFactory>&)’ is implicitly declared as deleted because ‘boost::shared_ptr<apache::thrift::transport::TTransportFactory>’ declares a move constructor or move assignment operator
+In file included from /usr/local/include/thrift/server/TSimpleServer.h:23:0,
+                 from ../main.h:30,
+                 from test.cc:1:
+/usr/local/include/thrift/server/TServer.h: In member function ‘boost::shared_ptr<apache::thrift::transport::TTransportFactory> apache::thrift::server::TServer::getOutputTransportFactory()’:
+/usr/local/include/thrift/server/TServer.h:128:12: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TTransportFactory>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransportFactory>&)’
+/usr/local/include/thrift/server/TServer.h: In member function ‘boost::shared_ptr<apache::thrift::protocol::TProtocolFactory> apache::thrift::server::TServer::getInputProtocolFactory()’:
+/usr/local/include/thrift/server/TServer.h:132:12: error: use of deleted function ‘boost::shared_ptr<apache::thrift::protocol::TProtocolFactory>::shared_ptr(const boost::shared_ptr<apache::thrift::protocol::TProtocolFactory>&)’
+In file included from /usr/include/boost/shared_ptr.hpp:17:0,
+                 from /usr/local/include/thrift/transport/TTransport.h:24,
+                 from /usr/local/include/thrift/protocol/TProtocol.h:23,
+                 from /usr/local/include/thrift/protocol/TBinaryProtocol.h:23,
+                 from ../main.h:29,
+                 from test.cc:1:
+/usr/include/boost/smart_ptr/shared_ptr.hpp:168:25: note: ‘boost::shared_ptr<apache::thrift::protocol::TProtocolFactory>::shared_ptr(const boost::shared_ptr<apache::thrift::protocol::TProtocolFactory>&)’ is implicitly declared as deleted because ‘boost::shared_ptr<apache::thrift::protocol::TProtocolFactory>’ declares a move constructor or move assignment operator
+In file included from /usr/local/include/thrift/server/TSimpleServer.h:23:0,
+                 from ../main.h:30,
+                 from test.cc:1:
+/usr/local/include/thrift/server/TServer.h: In member function ‘boost::shared_ptr<apache::thrift::protocol::TProtocolFactory> apache::thrift::server::TServer::getOutputProtocolFactory()’:
+/usr/local/include/thrift/server/TServer.h:136:12: error: use of deleted function ‘boost::shared_ptr<apache::thrift::protocol::TProtocolFactory>::shared_ptr(const boost::shared_ptr<apache::thrift::protocol::TProtocolFactory>&)’
+/usr/local/include/thrift/server/TServer.h: In member function ‘boost::shared_ptr<apache::thrift::server::TServerEventHandler> apache::thrift::server::TServer::getEventHandler()’:
+/usr/local/include/thrift/server/TServer.h:140:12: error: use of deleted function ‘boost::shared_ptr<apache::thrift::server::TServerEventHandler>::shared_ptr(const boost::shared_ptr<apache::thrift::server::TServerEventHandler>&)’
+In file included from /usr/include/boost/shared_ptr.hpp:17:0,
+                 from /usr/local/include/thrift/transport/TTransport.h:24,
+                 from /usr/local/include/thrift/protocol/TProtocol.h:23,
+                 from /usr/local/include/thrift/protocol/TBinaryProtocol.h:23,
+                 from ../main.h:29,
+                 from test.cc:1:
+/usr/include/boost/smart_ptr/shared_ptr.hpp:168:25: note: ‘boost::shared_ptr<apache::thrift::server::TServerEventHandler>::shared_ptr(const boost::shared_ptr<apache::thrift::server::TServerEventHandler>&)’ is implicitly declared as deleted because ‘boost::shared_ptr<apache::thrift::server::TServerEventHandler>’ declares a move constructor or move assignment operator
+In file included from ../main.h:32:0,
+                 from test.cc:1:
+/usr/local/include/thrift/transport/TBufferTransports.h: In constructor ‘apache::thrift::transport::TBufferedTransport::TBufferedTransport(boost::shared_ptr<apache::thrift::transport::TTransport>)’:
+/usr/local/include/thrift/transport/TBufferTransports.h:203:35: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TTransport>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransport>&)’
+/usr/local/include/thrift/transport/TBufferTransports.h: In constructor ‘apache::thrift::transport::TBufferedTransport::TBufferedTransport(boost::shared_ptr<apache::thrift::transport::TTransport>, uint32_t)’:
+/usr/local/include/thrift/transport/TBufferTransports.h:214:35: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TTransport>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransport>&)’
+/usr/local/include/thrift/transport/TBufferTransports.h: In constructor ‘apache::thrift::transport::TBufferedTransport::TBufferedTransport(boost::shared_ptr<apache::thrift::transport::TTransport>, uint32_t, uint32_t)’:
+/usr/local/include/thrift/transport/TBufferTransports.h:225:35: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TTransport>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransport>&)’
+/usr/local/include/thrift/transport/TBufferTransports.h: In member function ‘boost::shared_ptr<apache::thrift::transport::TTransport> apache::thrift::transport::TBufferedTransport::getUnderlyingTransport()’:
+/usr/local/include/thrift/transport/TBufferTransports.h:271:12: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TTransport>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransport>&)’
+/usr/local/include/thrift/transport/TBufferTransports.h: In member function ‘virtual boost::shared_ptr<apache::thrift::transport::TTransport> apache::thrift::transport::TBufferedTransportFactory::getTransport(boost::shared_ptr<apache::thrift::transport::TTransport>)’:
+/usr/local/include/thrift/transport/TBufferTransports.h:312:70: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TTransport>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransport>&)’
+/usr/local/include/thrift/transport/TBufferTransports.h:198:3: error:   initializing argument 1 of ‘apache::thrift::transport::TBufferedTransport::TBufferedTransport(boost::shared_ptr<apache::thrift::transport::TTransport>)’
+/usr/local/include/thrift/transport/TBufferTransports.h: In constructor ‘apache::thrift::transport::TFramedTransport::TFramedTransport(boost::shared_ptr<apache::thrift::transport::TTransport>)’:
+/usr/local/include/thrift/transport/TBufferTransports.h:337:35: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TTransport>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransport>&)’
+/usr/local/include/thrift/transport/TBufferTransports.h: In constructor ‘apache::thrift::transport::TFramedTransport::TFramedTransport(boost::shared_ptr<apache::thrift::transport::TTransport>, uint32_t)’:
+/usr/local/include/thrift/transport/TBufferTransports.h:347:35: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TTransport>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransport>&)’
+/usr/local/include/thrift/transport/TBufferTransports.h: In member function ‘boost::shared_ptr<apache::thrift::transport::TTransport> apache::thrift::transport::TFramedTransport::getUnderlyingTransport()’:
+/usr/local/include/thrift/transport/TBufferTransports.h:382:12: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TTransport>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransport>&)’
+/usr/local/include/thrift/transport/TBufferTransports.h: In member function ‘virtual boost::shared_ptr<apache::thrift::transport::TTransport> apache::thrift::transport::TFramedTransportFactory::getTransport(boost::shared_ptr<apache::thrift::transport::TTransport>)’:
+/usr/local/include/thrift/transport/TBufferTransports.h:433:68: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TTransport>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransport>&)’
+/usr/local/include/thrift/transport/TBufferTransports.h:332:3: error:   initializing argument 1 of ‘apache::thrift::transport::TFramedTransport::TFramedTransport(boost::shared_ptr<apache::thrift::transport::TTransport>)’
+In file included from test.cc:3:0:
+gen-cpp/headers.h: In constructor ‘MarvinTest::TestServiceIfSingletonFactory::TestServiceIfSingletonFactory(const boost::shared_ptr<MarvinTest::TestServiceIf>&)’:
+gen-cpp/headers.h:300:94: error: use of deleted function ‘boost::shared_ptr<MarvinTest::TestServiceIf>::shared_ptr(const boost::shared_ptr<MarvinTest::TestServiceIf>&)’
+In file included from /usr/include/boost/shared_ptr.hpp:17:0,
+                 from /usr/local/include/thrift/transport/TTransport.h:24,
+                 from /usr/local/include/thrift/protocol/TProtocol.h:23,
+                 from /usr/local/include/thrift/protocol/TBinaryProtocol.h:23,
+                 from ../main.h:29,
+                 from test.cc:1:
+/usr/include/boost/smart_ptr/shared_ptr.hpp:168:25: note: ‘boost::shared_ptr<MarvinTest::TestServiceIf>::shared_ptr(const boost::shared_ptr<MarvinTest::TestServiceIf>&)’ is implicitly declared as deleted because ‘boost::shared_ptr<MarvinTest::TestServiceIf>’ declares a move constructor or move assignment operator
+In file included from test.cc:3:0:
+gen-cpp/headers.h: In constructor ‘MarvinTest::TestServiceClient::TestServiceClient(boost::shared_ptr<apache::thrift::protocol::TProtocol>)’:
+gen-cpp/headers.h:419:17: error: use of deleted function ‘boost::shared_ptr<apache::thrift::protocol::TProtocol>::shared_ptr(const boost::shared_ptr<apache::thrift::protocol::TProtocol>&)’
+gen-cpp/headers.h:419:17: error: use of deleted function ‘boost::shared_ptr<apache::thrift::protocol::TProtocol>::shared_ptr(const boost::shared_ptr<apache::thrift::protocol::TProtocol>&)’
+In file included from test.cc:3:0:
+gen-cpp/headers.h: In constructor ‘MarvinTest::TestServiceClient::TestServiceClient(boost::shared_ptr<apache::thrift::protocol::TProtocol>, boost::shared_ptr<apache::thrift::protocol::TProtocol>)’:
+gen-cpp/headers.h:425:18: error: use of deleted function ‘boost::shared_ptr<apache::thrift::protocol::TProtocol>::shared_ptr(const boost::shared_ptr<apache::thrift::protocol::TProtocol>&)’
+gen-cpp/headers.h:425:18: error: use of deleted function ‘boost::shared_ptr<apache::thrift::protocol::TProtocol>::shared_ptr(const boost::shared_ptr<apache::thrift::protocol::TProtocol>&)’
+gen-cpp/headers.h: In member function ‘boost::shared_ptr<apache::thrift::protocol::TProtocol> MarvinTest::TestServiceClient::getInputProtocol()’:
+gen-cpp/headers.h:430:12: error: use of deleted function ‘boost::shared_ptr<apache::thrift::protocol::TProtocol>::shared_ptr(const boost::shared_ptr<apache::thrift::protocol::TProtocol>&)’
+gen-cpp/headers.h: In member function ‘boost::shared_ptr<apache::thrift::protocol::TProtocol> MarvinTest::TestServiceClient::getOutputProtocol()’:
+gen-cpp/headers.h:433:12: error: use of deleted function ‘boost::shared_ptr<apache::thrift::protocol::TProtocol>::shared_ptr(const boost::shared_ptr<apache::thrift::protocol::TProtocol>&)’
+gen-cpp/headers.h: In constructor ‘MarvinTest::TestServiceProcessor::TestServiceProcessor(boost::shared_ptr<MarvinTest::TestServiceIf>)’:
+gen-cpp/headers.h:456:17: error: use of deleted function ‘boost::shared_ptr<MarvinTest::TestServiceIf>::shared_ptr(const boost::shared_ptr<MarvinTest::TestServiceIf>&)’
+gen-cpp/headers.h: In constructor ‘MarvinTest::TestServiceProcessorFactory::TestServiceProcessorFactory(const boost::shared_ptr<MarvinTest::TestServiceIfFactory>&)’:
+gen-cpp/headers.h:466:37: error: use of deleted function ‘boost::shared_ptr<MarvinTest::TestServiceIfFactory>::shared_ptr(const boost::shared_ptr<MarvinTest::TestServiceIfFactory>&)’
+In file included from /usr/include/boost/shared_ptr.hpp:17:0,
+                 from /usr/local/include/thrift/transport/TTransport.h:24,
+                 from /usr/local/include/thrift/protocol/TProtocol.h:23,
+                 from /usr/local/include/thrift/protocol/TBinaryProtocol.h:23,
+                 from ../main.h:29,
+                 from test.cc:1:
+/usr/include/boost/smart_ptr/shared_ptr.hpp:168:25: note: ‘boost::shared_ptr<MarvinTest::TestServiceIfFactory>::shared_ptr(const boost::shared_ptr<MarvinTest::TestServiceIfFactory>&)’ is implicitly declared as deleted because ‘boost::shared_ptr<MarvinTest::TestServiceIfFactory>’ declares a move constructor or move assignment operator
+/usr/include/boost/smart_ptr/shared_ptr.hpp: In instantiation of ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(const boost::shared_ptr<T>&) [with T = apache::thrift::TProcessorEventHandler; boost::shared_ptr<T> = boost::shared_ptr<apache::thrift::TProcessorEventHandler>]’:
+/usr/local/include/thrift/TProcessor.h:155:21:   required from here
+/usr/include/boost/smart_ptr/shared_ptr.hpp:305:9: error: use of deleted function ‘boost::shared_ptr<apache::thrift::TProcessorEventHandler>::shared_ptr(const boost::shared_ptr<apache::thrift::TProcessorEventHandler>&)’
+/usr/include/boost/smart_ptr/shared_ptr.hpp: In instantiation of ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(const boost::shared_ptr<T>&) [with T = apache::thrift::concurrency::Runnable; boost::shared_ptr<T> = boost::shared_ptr<apache::thrift::concurrency::Runnable>]’:
+/usr/local/include/thrift/concurrency/Thread.h:126:74:   required from here
+/usr/include/boost/smart_ptr/shared_ptr.hpp:305:9: error: use of deleted function ‘boost::shared_ptr<apache::thrift::concurrency::Runnable>::shared_ptr(const boost::shared_ptr<apache::thrift::concurrency::Runnable>&)’
+/usr/include/boost/smart_ptr/shared_ptr.hpp: In instantiation of ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(const boost::shared_ptr<T>&) [with T = apache::thrift::protocol::TProtocol; boost::shared_ptr<T> = boost::shared_ptr<apache::thrift::protocol::TProtocol>]’:
+/usr/local/include/thrift/server/TServer.h:264:22:   required from here
+/usr/include/boost/smart_ptr/shared_ptr.hpp:305:9: error: use of deleted function ‘boost::shared_ptr<apache::thrift::protocol::TProtocol>::shared_ptr(const boost::shared_ptr<apache::thrift::protocol::TProtocol>&)’
+/usr/include/boost/smart_ptr/shared_ptr.hpp: In instantiation of ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(const boost::shared_ptr<T>&) [with T = apache::thrift::transport::TTransport; boost::shared_ptr<T> = boost::shared_ptr<apache::thrift::transport::TTransport>]’:
+/usr/local/include/thrift/server/TServer.h:266:26:   required from here
+/usr/include/boost/smart_ptr/shared_ptr.hpp:305:9: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TTransport>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransport>&)’
+/usr/include/boost/smart_ptr/shared_ptr.hpp: In instantiation of ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(const boost::shared_ptr<T>&) [with T = apache::thrift::transport::TTransportFactory; boost::shared_ptr<T> = boost::shared_ptr<apache::thrift::transport::TTransportFactory>]’:
+/usr/local/include/thrift/server/TServer.h:284:30:   required from here
+/usr/include/boost/smart_ptr/shared_ptr.hpp:305:9: error: use of deleted function ‘boost::shared_ptr<apache::thrift::transport::TTransportFactory>::shared_ptr(const boost::shared_ptr<apache::thrift::transport::TTransportFactory>&)’
+/usr/include/boost/smart_ptr/shared_ptr.hpp: In instantiation of ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(const boost::shared_ptr<T>&) [with T = apache::thrift::protocol::TProtocolFactory; boost::shared_ptr<T> = boost::shared_ptr<apache::thrift::protocol::TProtocolFactory>]’:
+/usr/local/include/thrift/server/TServer.h:292:29:   required from here
+/usr/include/boost/smart_ptr/shared_ptr.hpp:305:9: error: use of deleted function ‘boost::shared_ptr<apache::thrift::protocol::TProtocolFactory>::shared_ptr(const boost::shared_ptr<apache::thrift::protocol::TProtocolFactory>&)’
+/usr/include/boost/smart_ptr/shared_ptr.hpp: In instantiation of ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(const boost::shared_ptr<T>&) [with T = apache::thrift::server::TServerEventHandler; boost::shared_ptr<T> = boost::shared_ptr<apache::thrift::server::TServerEventHandler>]’:
+/usr/local/include/thrift/server/TServer.h:300:21:   required from here
+/usr/include/boost/smart_ptr/shared_ptr.hpp:305:9: error: use of deleted function ‘boost::shared_ptr<apache::thrift::server::TServerEventHandler>::shared_ptr(const boost::shared_ptr<apache::thrift::server::TServerEventHandler>&)’
+In file included from test.cc:1:0:
+../main.h: In instantiation of ‘static void marvin::runMain<TImpl, TProcessor>::run() [with TImpl = TestServiceImpl; TProcessor = MarvinTest::TestServiceProcessor]’:
+../main.h:72:3:   required from ‘void marvin::main() [with TImpl = TestServiceImpl; TProcessor = MarvinTest::TestServiceProcessor]’
+test.cc:13:67:   required from here
+../main.h:66:5: error: use of deleted function ‘boost::shared_ptr<apache::thrift::server::TServerEventHandler>::shared_ptr(const boost::shared_ptr<apache::thrift::server::TServerEventHandler>&)’
+In file included from /usr/local/include/thrift/server/TSimpleServer.h:23:0,
+                 from ../main.h:30,
+                 from test.cc:1:
+/usr/local/include/thrift/server/TServer.h:299:8: error:   initializing argument 1 of ‘void apache::thrift::server::TServer::setServerEventHandler(boost::shared_ptr<apache::thrift::server::TServerEventHandler>)’
+‘
+Internal compiler error: Error reporting routines re-entered.
+Please submit a full bug report,
+with preprocessed source if appropriate.
+See <file:///usr/share/doc/gcc-4.7/README.Bugs> for instructions.
+Preprocessed source stored into /tmp/ccgXkSj0.out file, please attach this to your bugreport.
+make: *** [binary] Error 1

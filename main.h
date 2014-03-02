@@ -33,7 +33,11 @@ int main(int argc, char** argv) {
 
 #include "../felicity/with_gflags/watchdog.h"
 
+#ifndef MARVIN_NO_GFLAGS
 DEFINE_int32(port, 9090, "Port to use.");
+#else
+const int32_t FLAGS_port = 9090;
+#endif
 
 namespace marvin {
 
