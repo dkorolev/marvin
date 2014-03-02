@@ -7,9 +7,7 @@ I am observing the following three pieces not play well together:
 
 Steps to reproduce:
 
-git clone marvin, felicity  # TODO(dkorolev): Proper links once online.
-cd marvin/test
-make
+(git clone git@github.com:dkorolev/felicity.git; git clone git@github.com:dkorolev/marvin.git; cd marvin/test; make)
 
 The code should build, while it does not.
 
