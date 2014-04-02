@@ -1,26 +1,25 @@
-Issue:
+## Issue
 
 I am observing the following three pieces not play well together:
 * Thrift 0.9.1
 * Boost 104601
 * C++11 (g++ 4.7.3 on Ubuntu 12.04)
 
-Steps to reproduce:
+## Steps to Reproduce
 
-git clone marvin, felicity  # TODO(dkorolev): Proper links once online.
-cd marvin/test
-make
+```(git clone git@github.com:dkorolev/felicity.git; git clone git@github.com:dkorolev/marvin.git; cd marvin/test; make)```
 
 The code should build, while it does not.
 
-Error:
+## Error
 
-boost::shared_ptr<T> can't be constructed from a const reference to another boost::shared_ptr<T>.
+```boost::shared_ptr<T>``` can't be constructed from a const reference to another ```boost::shared_ptr<T>```.
 
-Error message:
+## Error Message
 
 Gist:
 
+```
 ...
 In file included from /usr/local/include/thrift/protocol/TBinaryProtocol.h:23:0,
                  from ../main.h:29,
@@ -32,28 +31,34 @@ In file included from /usr/include/boost/shared_ptr.hpp:17:0,
                  from /usr/local/include/thrift/protocol/TProtocol.h:23,
                  from /usr/local/include/thrift/protocol/TBinaryProtocol.h:23,
 ...
+```
 
-See FULL_ERROR_LOG.txt for more details.
+See FULL_ERROR_LOG.txt (https://github.com/dkorolev/marvin/blob/master/test/FULL_ERROR_LOG.txt) for more details.
 
-Workaround:
+## Workaround
 
 Before looking into Thrift code, the minimum workaround I found implies a code change in Boost and an extra C++ preprocessor flag.
 
 1) Comment out BOOST_HAS_RVALUE_REFS in boost/config/compiler/gcc.hpp
 
+```
 $ diff /usr/include/boost/config/compiler/gcc.hpp ~/original_boost_config_compiler_gcc.hpp
 160,161c160,161
 < #  warning "BOOST_HAS_RVALUE_REFS is commented out by Dima for Thrift."
 < // #  define BOOST_HAS_RVALUE_REFS
 ---
 > #  define BOOST_HAS_RVALUE_REFS
+```
 
 2) Explicitly #define BOOST_NO_RVALUE_REFERENCES.
 
+```
 CPPFLAGS+= -DBOOST_NO_RVALUE_REFERENCES
+```
 
-Enviroment:
+## Enviroment
 
+```
 $ cat /etc/lsb-release 
 DISTRIB_ID=Ubuntu
 DISTRIB_RELEASE=12.04
@@ -75,3 +80,4 @@ $ grep -R "#define BOOST_VERSION" /usr/include/boost/
 $ grep -R VERSION  /usr/local/include/thrift/config.h
 #define PACKAGE_VERSION "0.9.1"
 #define VERSION "0.9.1"
+```
